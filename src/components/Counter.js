@@ -10,7 +10,7 @@ import TextField from "@mui/material/TextField";
 import styles from "./Counter.module.css";
 
 function Counter() {
-  const countFromStore = useSelector((state) => state.count);
+  const countFromStore = useSelector((state) => state.counter.count);
   const dispatch = useDispatch();
   const [count, setCount] = useState(countFromStore);
   useEffect(() => {

@@ -32,7 +32,7 @@ export const initialState = {
 };
 
 const reducer = combineReducers({
-  countReducer,
+  counter: countReducer,
 });
 
 export const store = createStore(reducer);
