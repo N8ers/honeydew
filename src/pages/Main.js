@@ -1,24 +1,20 @@
-import { Link, Outlet } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Outlet } from "react-router-dom";
+import { Box } from "@mui/material";
 
 import NavigationDrawer from "../components/NavigationDrawer";
 
 function Main() {
   return (
     <div>
-      <h1>I Am Page/Main</h1>
+      <Box sx={{ display: "flex" }}>
+        <NavigationDrawer />
 
-      <NavigationDrawer />
+        <h1>I am home</h1>
 
-      <Link to={"/lists"}>
-        <Button variant="contained">lists</Button>
-      </Link>
-
-      <Link to={"/lists/2"}>
-        <Button variant="contained">lists/2</Button>
-      </Link>
-
-      <Outlet />
+        <Box m={3}>
+          <Outlet />
+        </Box>
+      </Box>
     </div>
   );
 }
