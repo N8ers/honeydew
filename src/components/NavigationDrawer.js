@@ -21,7 +21,6 @@ export default function PermanentDrawerLeft() {
       }}
       variant="permanent"
       anchor="left"
-      className={styles.drawer}
     >
       <div className={styles.drawer}>
         <div>

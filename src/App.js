@@ -4,6 +4,7 @@ import styles from "./App.module.css";
 
 import TodoContainer from "./components/TodoContainer.js";
 import Counter from "./components/Counter";
+import ListsContainer from "./components/ListsContainer";
 import Main from "./pages/Main";
 
 import Details from "./Details";
@@ -14,7 +15,7 @@ function App() {
       <div className={styles.links}></div>
       <Routes>
         <Route path="/" element={<Main />}>
-          <Route path="/lists" element={<div>list of lists</div>} />
+          <Route path="/lists" element={<ListsContainer />} />
           <Route
             path="/lists/:id"
             element={<TodoContainer title="grocery list" />}

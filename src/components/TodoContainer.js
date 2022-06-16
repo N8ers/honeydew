@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import Paper from "@mui/material/Paper";
 
 import styles from "./TodoContainer.module.css";
@@ -6,16 +8,22 @@ import styles from "./TodoContainer.module.css";
 import Todos from "./Todos";
 import NewTodo from "./NewTodo";
 
-function TodoContainer(props) {
-  const dummyTodos = [
-    { id: 1, title: "throw rocks" },
-    { id: 2, title: "eat socks" },
-    { id: 3, title: "shake blocks" },
-  ];
-
-  const [todos, setTodos] = useState(dummyTodos);
-
+function TodoContainer() {
+  const params = useParams();
+  const [title, setTitle] = useState([]);
+  const [todos, setTodos] = useState([]);
   const [id, setId] = useState(10);
+
+  useEffect(() => {
+    async function getData() {
+      const result = await axios.get(
+        `http://localhost:3050/lists/${params.id}`
+      );
+      setTodos(result.data.tasks);
+      setTitle(result.data.title);
+    }
+    getData();
+  }, []);
 
   const handleAddingNewTodo = (newTodo) => {
     const todo = { id, title: newTodo };
@@ -25,7 +33,7 @@ function TodoContainer(props) {
 
   return (
     <Paper elevation={3} className={styles.container}>
-      <h1>{props.title}</h1>
+      <h1>{title}</h1>
       <Todos todoList={todos} />
       <NewTodo addNewTodo={handleAddingNewTodo} />
     </Paper>

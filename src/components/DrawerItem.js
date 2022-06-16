@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   ListItem,
   ListItemButton,
@@ -9,7 +9,14 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 
 function NavigationItem(props) {
   return (
-    <Link to={props.to} style={{ textDecoration: "none", color: "white" }}>
+    <NavLink
+      exact={props.to}
+      to={props.to}
+      style={({ isActive }) => ({
+        color: isActive ? "teal" : "white",
+        textDecoration: "none",
+      })}
+    >
       <ListItem key={props.to} disablePadding>
         <ListItemButton>
           <ListItemIcon style={{ color: "#1ea5a3" }}>
@@ -19,7 +26,7 @@ function NavigationItem(props) {
           <ListItemText primary={props.title} />
         </ListItemButton>
       </ListItem>
-    </Link>
+    </NavLink>
   );
 }
 

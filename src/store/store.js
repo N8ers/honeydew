@@ -4,19 +4,12 @@ import { countReducer } from "./countReducer";
 
 export const initialState = {
   // taskLists: [
-  //   { id: 1, title: "Grocery List" },
-  //   { id: 2, title: "Tricks to teach Tsuki" },
-  //   { id: 3, title: "Weekend Chores" },
+  //   { id: 1, title: "Grocery List", tasks: [], invitedFriends: [{ id: 1, username: 'Goon }] },
+  //   { id: 2, title: "Tricks to teach Tsuki", tasks: [], invitedFriends: [] },
+  //   { id: 3, title: "Weekend Chores", tasks: [], invitedFriends: [] },
   // ],
   // selectedTaskList: {
   //   id: 1,
-  //   title: "Grocery List",
-  //   tasks: [
-  //     { id: 1, complete: false, title: "throw rocks" },
-  //     { id: 2, complete: false, title: "eat socks" },
-  //     { id: 3, complete: false, title: "shake blocks" },
-  //   ],
-  //   invitedFriends: [{ id: 1, username: "Goon" }],
   // },
   // user: {
   //   username: "N8ers",
