@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Drawer, Divider } from "@mui/material";
 
-import DrawerItem from "./DrawerItem";
+import DrawerItem from "../DrawerItem/DrawerItem";
 
 import styles from "./NavigationDrawer.module.css";
 

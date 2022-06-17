@@ -5,8 +5,8 @@ import Paper from "@mui/material/Paper";
 
 import styles from "./TodoContainer.module.css";
 
-import Todos from "./Todos";
-import NewTodo from "./NewTodo";
+import Todos from "../Todo/Todos";
+import NewTodo from "../NewTodo/NewTodo";
 
 function TodoContainer() {
   const params = useParams();

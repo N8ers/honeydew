@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import styles from "./App.module.css";
 
-import TodoContainer from "./components/TodoContainer.js";
-import Counter from "./components/Counter";
-import ListsContainer from "./components/ListsContainer";
+import TodoContainer from "./components/TodoContainer/TodoContainer.js";
+import Counter from "./components/Counter/Counter";
+import ListsContainer from "./components/ListContainer/ListsContainer";
 import Main from "./pages/Main";
 
 import Details from "./Details";

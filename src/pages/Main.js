@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import NavigationDrawer from "../components/NavigationDrawer";
+import NavigationDrawer from "../components/NavigationDrawer/NavigationDrawer";
 
 function Main() {
   return (
