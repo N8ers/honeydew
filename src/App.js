@@ -5,7 +5,8 @@ import styles from "./App.module.css";
 import TodoContainer from "./components/TodoContainer/TodoContainer.js";
 import Counter from "./components/Counter/Counter";
 import ListsContainer from "./components/ListContainer/ListsContainer";
-import Main from "./pages/Main";
+import Main from "./layouts/Main";
+import Auth from "./layouts/Auth";
 
 import Details from "./Details";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/counter" element={<Counter />} />
           <Route path="/details/:id" element={<Details />} />
         </Route>
+        <Route path="/auth" element={<Auth />}></Route>
       </Routes>
     </BrowserRouter>
   );

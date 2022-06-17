@@ -44,7 +44,7 @@ export default function PermanentDrawerLeft() {
 
         <Divider />
 
-        <DrawerItem to="/" title="logout" />
+        <DrawerItem to="/auth" title="logout" />
       </div>
     </Drawer>
   );
