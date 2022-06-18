@@ -4,14 +4,14 @@ import IconButton from "@mui/material/IconButton";
 import Checkbox from "@mui/material/Checkbox";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function Todos(props) {
+function ListItems(props) {
   return (
     <List>
-      {props.todoList.map((todo) => {
+      {props.listItems.map((item) => {
         return (
-          <ListItem key={todo.id}>
+          <ListItem key={item.id}>
             <Checkbox />
-            {todo.title}
+            {item.title}
             <IconButton edge="end" aria-label="delete">
               <DeleteIcon />
             </IconButton>
@@ -22,4 +22,4 @@ function Todos(props) {
   );
 }
 
-export default Todos;
+export default ListItems;

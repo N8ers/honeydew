@@ -2,12 +2,12 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-function NewTodo(props) {
-  const [newTodo, setNewTodo] = useState("");
+function NewListItem(props) {
+  const [newListItem, setNewListItem] = useState("");
 
-  const addNewTodo = () => {
-    props.addNewTodo(newTodo);
-    setNewTodo("");
+  const addNewListItem = () => {
+    props.addListItem(newListItem);
+    setNewListItem("");
   };
 
   return (
@@ -16,12 +16,12 @@ function NewTodo(props) {
         id="outlined-basic"
         label="Outlined"
         variant="outlined"
-        value={newTodo}
-        onChange={(event) => setNewTodo(event.target.value)}
+        value={newListItem}
+        onChange={(event) => setNewListItem(event.target.value)}
       />
       <Button
         variant="contained"
-        onClick={addNewTodo}
+        onClick={addNewListItem}
         style={{
           backgroundColor: "#1ea5a3",
           color: "#002f3c",
@@ -34,4 +34,4 @@ function NewTodo(props) {
   );
 }
 
-export default NewTodo;
+export default NewListItem;

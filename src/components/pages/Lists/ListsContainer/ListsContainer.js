@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Card from "@mui/material/Card";
 
-import styles from "./ListContainer.module.css";
+import styles from "./ListsContainer.module.css";
 
 function ListsContainer() {
   const [lists, setLists] = useState([]);

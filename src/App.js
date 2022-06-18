@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import styles from "./App.module.css";
 
-import TodoContainer from "./components/pages/List/TodoContainer/TodoContainer.js";
+import ListContainer from "./components/pages/List/ListContainer/ListContainer.js";
 import Counter from "./components/pages/Counter/Counter/Counter";
-import ListsContainer from "./components/pages/Lists/ListContainer/ListsContainer";
+import ListsContainer from "./components/pages/Lists/ListsContainer/ListsContainer";
 import Main from "./layouts/Main";
 import Auth from "./layouts/Auth";
 
@@ -19,7 +19,7 @@ function App() {
           <Route path="/lists" element={<ListsContainer />} />
           <Route
             path="/lists/:id"
-            element={<TodoContainer title="grocery list" />}
+            element={<ListContainer title="grocery list" />}
           />
           <Route path="/counter" element={<Counter />} />
           <Route path="/details/:id" element={<Details />} />
