@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
-import { increment, decrement, set } from "../../store/actions";
+import { increment, decrement, set } from "../../../../store/actions";
 
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
