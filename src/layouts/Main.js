@@ -9,9 +9,9 @@ function Main() {
       <Box sx={{ display: "flex" }}>
         <NavigationDrawer />
 
-        <h1>I am home</h1>
-
         <Box m={3}>
+          <h1>I am home</h1>
+          <hr />
           <Outlet />
         </Box>
       </Box>

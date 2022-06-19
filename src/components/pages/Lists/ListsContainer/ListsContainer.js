@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Card from "@mui/material/Card";
+import { Card, IconButton } from "@mui/material";
+import { Add } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getLists } from "../../../../store/actions";
@@ -24,6 +25,10 @@ function ListsContainer() {
   return (
     <div>
       <h1>Lists</h1>
+
+      <IconButton aria-label="delete" size="large">
+        <Add fontSize="inherit" />
+      </IconButton>
 
       <div className={styles.cardContainer}>
         {lists.map((list) => (

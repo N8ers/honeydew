@@ -5,10 +5,10 @@ import styles from "./App.module.css";
 import ListContainer from "./components/pages/List/ListContainer/ListContainer.js";
 import Counter from "./components/pages/Counter/Counter/Counter";
 import ListsContainer from "./components/pages/Lists/ListsContainer/ListsContainer";
+
 import Main from "./layouts/Main";
 import Auth from "./layouts/Auth";
-
-import Details from "./Details";
+import PageNotFound from "./layouts/PageNotFound";
 
 function App() {
   return (
@@ -22,9 +22,10 @@ function App() {
             element={<ListContainer title="grocery list" />}
           />
           <Route path="/counter" element={<Counter />} />
-          <Route path="/details/:id" element={<Details />} />
         </Route>
         <Route path="/auth" element={<Auth />}></Route>
+
+        <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </BrowserRouter>
   );

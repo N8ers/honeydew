@@ -31,18 +31,16 @@ export default function PermanentDrawerLeft() {
           />
           <h1 className={styles.title}>honeydew</h1>
         </div>
-        <Divider />
+        <Divider sx={{ bgcolor: "white" }} />
 
         <DrawerItem to="/" title="home" />
         <DrawerItem to="/lists" title="lists" />
-        <DrawerItem to="/lists/2" title="lists/2" />
 
-        <Divider />
+        <Divider sx={{ bgcolor: "white" }} />
 
         <DrawerItem to="/counter" title="counter" />
-        <DrawerItem to="/details/2" title="/details/2" />
 
-        <Divider />
+        <Divider sx={{ bgcolor: "white" }} />
 
         <DrawerItem to="/auth" title="logout" />
       </div>
