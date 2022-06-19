@@ -7,7 +7,7 @@ function Auth() {
       <Card variant="outlined" sx={{ width: 500, margin: "0 auto" }}>
         <h1>I'm Auth</h1>
         <p>Pretty much the landing page if you're not signed in, i guess.</p>
-        <Link to={"/"}>
+        <Link to={"/lists"}>
           <Button variant="contained">Log In</Button>
         </Link>
       </Card>

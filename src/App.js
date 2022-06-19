@@ -5,6 +5,7 @@ import styles from "./App.module.css";
 import ListContainer from "./components/pages/List/ListContainer/ListContainer.js";
 import Counter from "./components/pages/Counter/Counter/Counter";
 import ListsContainer from "./components/pages/Lists/ListsContainer/ListsContainer";
+import FriendsContainer from "./components/pages/Friends/FriendsContainer/FriendsContainer";
 
 import Main from "./layouts/Main";
 import Auth from "./layouts/Auth";
@@ -21,6 +22,7 @@ function App() {
             path="/lists/:id"
             element={<ListContainer title="grocery list" />}
           />
+          <Route path="/friends" element={<FriendsContainer />} />
           <Route path="/counter" element={<Counter />} />
         </Route>
         <Route path="/auth" element={<Auth />}></Route>

@@ -33,8 +33,8 @@ export default function PermanentDrawerLeft() {
         </div>
         <Divider sx={{ bgcolor: "white" }} />
 
-        <DrawerItem to="/" title="home" />
         <DrawerItem to="/lists" title="lists" />
+        <DrawerItem to="/friends" title="friends" />
 
         <Divider sx={{ bgcolor: "white" }} />
 

@@ -10,7 +10,7 @@ function Main() {
         <NavigationDrawer />
 
         <Box m={3}>
-          <h1>I am home</h1>
+          <h1>I am the Main layout</h1>
           <hr />
           <Outlet />
         </Box>

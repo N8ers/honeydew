@@ -7,7 +7,7 @@ function PageNotFound() {
       <Card variant="outlined" sx={{ width: 500, margin: "0 auto" }}>
         <h1>404 Page Not Found</h1>
         <p>Whatever you just tried didn't work. How about we head home?</p>
-        <Link to={"/"}>
+        <Link to={"/lists"}>
           <Button variant="contained">Home</Button>
         </Link>
       </Card>
