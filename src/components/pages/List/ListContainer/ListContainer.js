@@ -3,7 +3,11 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Paper, Input } from "@mui/material";
 
-import { getListById, updateListTitle } from "../../../../store/actions";
+import {
+  getListById,
+  updateListTitle,
+  createListItem,
+} from "../../../../store/actions";
 
 import styles from "./ListContainer.module.css";
 
@@ -29,10 +33,9 @@ function ListContainer() {
     setId(listDataFromState.id);
   }, [listDataFromState]);
 
-  const handleAddingListItem = (newItem) => {
-    const item = { id, title: newItem };
-    setListItems((items) => [...items, item]);
-    setId(id + 1);
+  const handleAddingListItem = async (newItem) => {
+    const item = { listId: listDataFromState.id, title: newItem };
+    dispatch(createListItem(item));
   };
 
   const saveTitle = () => {

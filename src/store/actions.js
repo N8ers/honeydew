@@ -11,6 +11,8 @@ export const SET_LIST_TITLE = "SET_LIST_TITLE";
 
 export const CREATE_LIST = "CREATE_LIST";
 
+export const CREATE_LIST_ITEM = "CREATE_LIST_ITEM";
+
 // ACTION CREATORS
 export const increment = () => ({ type: INCREMENT });
 export const decrement = () => ({ type: DECREMENT });
@@ -36,6 +38,11 @@ export const setNewList = (value) => ({
   payload: value,
 });
 
+export const setNewListItem = (value) => ({
+  type: CREATE_LIST_ITEM,
+  payload: value,
+});
+
 const baseUrl = "http://localhost:3050";
 
 // THUNK ACTION CREATORS
@@ -56,9 +63,17 @@ export const updateListTitle = (id, title) => async (dispatch) => {
   dispatch(getListById(id));
 };
 
-export const createList = () => async (dispatch) => {
+export const createList = () => async () => {
   // I'm not sure this needs to be an action creator, as it does not directly influence state
   // it simply makes a network request and returns a response
   const response = await axios.post(`${baseUrl}/lists`);
   return response.data;
 };
+
+export const createListItem =
+  ({ listId, title }) =>
+  async (dispatch) => {
+    const data = { listId, title };
+    await axios.post(`${baseUrl}/listItem`, data);
+    dispatch(getListById(listId));
+  };

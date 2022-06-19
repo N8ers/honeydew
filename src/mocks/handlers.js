@@ -1,6 +1,7 @@
 import { rest } from "msw";
 
-let nextId = 4;
+let nextListId = 4;
+let nextTaskId = 13;
 
 const tasks = [
   {
@@ -17,11 +18,11 @@ const tasks = [
     id: 2,
     title: "Tricks to teach Tsuki",
     tasks: [
-      { id: 1, completed: true, title: "Sit" },
-      { id: 2, completed: false, title: "Be good" },
-      { id: 3, completed: true, title: "Roll over" },
-      { id: 4, completed: false, title: "Do taxes" },
-      { id: 5, completed: true, title: "Bang Bang!" },
+      { id: 4, completed: true, title: "Sit" },
+      { id: 5, completed: false, title: "Be good" },
+      { id: 6, completed: true, title: "Roll over" },
+      { id: 7, completed: false, title: "Do taxes" },
+      { id: 8, completed: true, title: "Bang Bang!" },
     ],
     invitedFriends: [],
   },
@@ -29,10 +30,10 @@ const tasks = [
     id: 3,
     title: "Weekend Chores",
     tasks: [
-      { id: 1, completed: false, title: "Get groceries" },
-      { id: 2, completed: false, title: "Trim beard" },
-      { id: 3, completed: false, title: "Code" },
-      { id: 4, completed: false, title: "Clean" },
+      { id: 9, completed: false, title: "Get groceries" },
+      { id: 10, completed: false, title: "Trim beard" },
+      { id: 11, completed: false, title: "Code" },
+      { id: 12, completed: false, title: "Clean" },
     ],
     invitedFriends: [],
   },
@@ -52,16 +53,32 @@ export const handlers = [
   }),
 
   rest.post(`${baseUrl}/lists`, (req, res, ctx) => {
-    console.log("mock service worker");
     const newTask = {
-      id: nextId,
+      id: nextListId,
       title: "",
       tasks: [],
       invitedFriends: [],
     };
     tasks.push(newTask);
-    nextId++;
+    nextListId++;
     return res(ctx.status(200), ctx.json({ id: newTask.id }));
+  }),
+
+  rest.post(`${baseUrl}/listItem`, (req, res, ctx) => {
+    const newListItem = {
+      id: nextTaskId,
+      title: req.body.title,
+      completed: false,
+    };
+
+    tasks.forEach((task) => {
+      if (task.id === req.body.listId) {
+        task.tasks.push(newListItem);
+      }
+    });
+
+    nextTaskId++;
+    return res(ctx.status(200));
   }),
 
   rest.put(`${baseUrl}/lists`, (req, res, ctx) => {
