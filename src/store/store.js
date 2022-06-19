@@ -15,7 +15,7 @@ export const initialState = {
   //   { id: 2, username: "Tsuki" },
   // ],
   selectedList: {
-    title: null,
+    title: "",
     tasks: [],
   },
   lists: [],

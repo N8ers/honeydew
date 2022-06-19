@@ -1,7 +1,5 @@
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import IconButton from "@mui/material/IconButton";
-import Checkbox from "@mui/material/Checkbox";
+import { Checkbox, IconButton, ListItem, List } from "@mui/material";
+
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function ListItems(props) {

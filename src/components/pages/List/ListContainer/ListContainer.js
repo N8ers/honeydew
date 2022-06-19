@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Paper from "@mui/material/Paper";
+import { Paper, Input } from "@mui/material";
 
-import { getListById } from "../../../../store/actions";
+import { getListById, updateListTitle } from "../../../../store/actions";
 
 import styles from "./ListContainer.module.css";
 
@@ -17,7 +17,7 @@ function ListContainer() {
 
   const [title, setTitle] = useState([]);
   const [listItems, setListItems] = useState([]);
-  const [id, setId] = useState(10);
+  const [id, setId] = useState(0);
 
   useEffect(() => {
     dispatch(getListById(params.id));
@@ -26,6 +26,7 @@ function ListContainer() {
   useEffect(() => {
     setTitle(listDataFromState.title);
     setListItems(listDataFromState.tasks);
+    setId(listDataFromState.id);
   }, [listDataFromState]);
 
   const handleAddingListItem = (newItem) => {
@@ -34,9 +35,22 @@ function ListContainer() {
     setId(id + 1);
   };
 
+  const saveTitle = () => {
+    if (listDataFromState.title !== title) {
+      dispatch(updateListTitle(id, title));
+    }
+  };
+
   return (
     <Paper elevation={3} className={styles.container}>
-      <h1>{title}</h1>
+      <Input
+        fullWidth
+        variant="standard"
+        onBlur={saveTitle}
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+      />
+
       <ListItems listItems={listItems} />
       <NewListItem addListItem={handleAddingListItem} />
     </Paper>

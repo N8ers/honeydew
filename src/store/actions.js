@@ -7,6 +7,7 @@ export const SET = "SET";
 
 export const SET_LIST_ITEMS = "SET_LIST_ITEMS";
 export const GET_LIST_BY_ID = "GET_LIST_BY_ID";
+export const SET_LIST_TITLE = "SET_LIST_TITLE";
 
 // ACTION CREATORS
 export const increment = () => ({ type: INCREMENT });
@@ -23,6 +24,11 @@ export const setListById = (value) => ({
   payload: value,
 });
 
+export const setListTitle = (value) => ({
+  type: SET_LIST_TITLE,
+  payload: value,
+});
+
 // THUNK ACTION CREATORS
 export const getLists = () => async (dispatch) => {
   const response = await axios.get("http://localhost:3050/lists");
@@ -32,4 +38,11 @@ export const getLists = () => async (dispatch) => {
 export const getListById = (id) => async (dispatch) => {
   const response = await axios.get(`http://localhost:3050/lists/${id}`);
   dispatch(setListById(response.data));
+};
+
+export const updateListTitle = (id, title) => async (dispatch) => {
+  const data = { id, title };
+  await axios.put("http://localhost:3050/lists/", data);
+  // call to re 'get' data
+  dispatch(getListById(id));
 };

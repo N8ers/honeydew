@@ -34,7 +34,7 @@ function ListsContainer() {
         {lists.map((list) => (
           <Link key={list.id} to={`/lists/${list.id}`}>
             <Card varient="outlined" className={styles.card}>
-              {list.title} | {list.id}
+              {list.title}
             </Card>
           </Link>
         ))}
