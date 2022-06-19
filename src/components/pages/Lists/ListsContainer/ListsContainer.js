@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Card from "@mui/material/Card";
+import { useSelector, useDispatch } from "react-redux";
+
+import { getLists } from "../../../../store/actions";
 
 import styles from "./ListsContainer.module.css";
 
 function ListsContainer() {
-  const [lists, setLists] = useState([]);
+  const listsFromStore = useSelector((state) => state.lists);
+  const [lists, setLists] = useState(listsFromStore);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getData() {
-      const result = await axios.get("http://localhost:3050/lists");
-      setLists(result.data);
-    }
-    getData();
-  }, []);
+    dispatch(getLists());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    setLists(listsFromStore);
+  }, [listsFromStore]);
 
   return (
     <div>

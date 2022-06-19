@@ -1,16 +1,11 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
 
 import { countReducer } from "./countReducer";
+import { listReducer } from "./listReducer";
+import { selectedListReducer } from "./selectedListReducer";
 
 export const initialState = {
-  // taskLists: [
-  //   { id: 1, title: "Grocery List", tasks: [], invitedFriends: [{ id: 1, username: 'Goon }] },
-  //   { id: 2, title: "Tricks to teach Tsuki", tasks: [], invitedFriends: [] },
-  //   { id: 3, title: "Weekend Chores", tasks: [], invitedFriends: [] },
-  // ],
-  // selectedTaskList: {
-  //   id: 1,
-  // },
   // user: {
   //   username: "N8ers",
   //   email: "____",
@@ -19,13 +14,45 @@ export const initialState = {
   //   { id: 1, username: "Goon" },
   //   { id: 2, username: "Tsuki" },
   // ],
+  selectedList: {
+    title: null,
+    tasks: [],
+  },
+  lists: [],
   counter: {
     count: 11,
   },
 };
 
+// multi reducer concept
+// const initialState = {
+//   users: [],
+//   tasks: [],
+// };
+// const userReducer = (users = initialState.users, action) => {
+//   if (action.type === "ADD_USER") {
+//     return [...users, action.payload];
+//   }
+// };
+// const taskReducer = (tasks = initialState.tasks, action) => {
+//   if (action.type === "ADD_TASK") {
+//     return [...tasks, action.payload];
+//   }
+// };
+// const reducer = combineReducers({
+//   users: userReducer, // user part of state tree, use userReducer
+//   tasks: taskReducer, // task part of start tree, use taskReducer
+// });
+
 const reducer = combineReducers({
   counter: countReducer,
+  lists: listReducer,
+  selectedList: selectedListReducer,
 });
 
-export const store = createStore(reducer);
+const middleware = applyMiddleware(thunk);
+
+const enhancer =
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
+export const store = createStore(reducer, compose(middleware, enhancer));
