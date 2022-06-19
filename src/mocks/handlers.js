@@ -1,5 +1,7 @@
 import { rest } from "msw";
 
+let nextId = 4;
+
 const tasks = [
   {
     id: 1,
@@ -36,21 +38,33 @@ const tasks = [
   },
 ];
 
+const baseUrl = "http://localhost:3050";
+
 export const handlers = [
-  rest.get("http://localhost:3050/lists", (req, res, ctx) => {
+  rest.get(`${baseUrl}/lists`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(tasks));
   }),
-  rest.get("http://localhost:3050/lists/1", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(tasks[0]));
-  }),
-  rest.get("http://localhost:3050/lists/2", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(tasks[1]));
-  }),
-  rest.get("http://localhost:3050/lists/3", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(tasks[2]));
+  rest.get(`${baseUrl}/lists/:id`, (req, res, ctx) => {
+    const [task] = tasks.filter((task) => {
+      return task.id === parseInt(req.params.id);
+    });
+    return res(ctx.status(200), ctx.json(task));
   }),
 
-  rest.put("http://localhost:3050/lists/", (req, res, ctx) => {
+  rest.post(`${baseUrl}/lists`, (req, res, ctx) => {
+    console.log("mock service worker");
+    const newTask = {
+      id: nextId,
+      title: "",
+      tasks: [],
+      invitedFriends: [],
+    };
+    tasks.push(newTask);
+    nextId++;
+    return res(ctx.status(200), ctx.json({ id: newTask.id }));
+  }),
+
+  rest.put(`${baseUrl}/lists`, (req, res, ctx) => {
     tasks.forEach((task) => {
       if (task.id === req.body.id) {
         task.title = req.body.title;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, IconButton } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getLists } from "../../../../store/actions";
+import { getLists, createList } from "../../../../store/actions";
 
 import styles from "./ListsContainer.module.css";
 
@@ -13,6 +13,7 @@ function ListsContainer() {
   const [lists, setLists] = useState(listsFromStore);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getLists());
@@ -22,11 +23,16 @@ function ListsContainer() {
     setLists(listsFromStore);
   }, [listsFromStore]);
 
+  const handleCratingList = async () => {
+    const { id } = await dispatch(createList());
+    navigate(`/lists/${id}`);
+  };
+
   return (
     <div>
       <h1>Lists</h1>
 
-      <IconButton aria-label="delete" size="large">
+      <IconButton aria-label="delete" size="large" onClick={handleCratingList}>
         <Add fontSize="inherit" />
       </IconButton>
 
