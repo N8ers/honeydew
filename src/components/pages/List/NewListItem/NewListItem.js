@@ -16,6 +16,7 @@ function NewListItem(props) {
       <TextField
         id="outlined-basic"
         variant="outlined"
+        size="small"
         value={newListItem}
         onChange={(event) => setNewListItem(event.target.value)}
       />
@@ -26,6 +27,7 @@ function NewListItem(props) {
           backgroundColor: "#1ea5a3",
           color: "#002f3c",
           fontWeight: "bold",
+          marginLeft: "5px",
         }}
       >
         Add

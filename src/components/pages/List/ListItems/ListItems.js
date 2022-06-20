@@ -1,19 +1,19 @@
-import { Checkbox, IconButton, ListItem, List } from "@mui/material";
+import { List } from "@mui/material";
 
-import DeleteIcon from "@mui/icons-material/Delete";
+import ItemContainer from "../ItemContainer/ItemContainer";
 
 function ListItems(props) {
   return (
     <List>
       {props.listItems.map((item) => {
         return (
-          <ListItem key={item.id}>
-            <Checkbox />
-            {item.title}
-            <IconButton edge="end" aria-label="delete">
-              <DeleteIcon />
-            </IconButton>
-          </ListItem>
+          <ItemContainer
+            key={item.id}
+            id={item.id}
+            listId={props.listId}
+            title={item.title}
+            completed={item.completed}
+          />
         );
       })}
     </List>

@@ -54,7 +54,7 @@ function ListContainer() {
         onChange={(event) => setTitle(event.target.value)}
       />
 
-      <ListItems listItems={listItems} />
+      <ListItems listItems={listItems} listId={id} />
       <NewListItem addListItem={handleAddingListItem} />
     </Paper>
   );

@@ -91,6 +91,22 @@ export const handlers = [
     return res(ctx.status(200));
   }),
 
+  rest.put(`${baseUrl}/listItem/:id`, (req, res, ctx) => {
+    tasks.forEach((taskList) => {
+      taskList.tasks.forEach((task) => {
+        if (task.id === parseInt(req.params.id)) {
+          if (req.body.hasOwnProperty("title")) {
+            task.title = req.body.title;
+          } else if (req.body.hasOwnProperty("completed")) {
+            task.completed = req.body.completed;
+          }
+        }
+      });
+    });
+
+    return res(ctx.status(200));
+  }),
+
   rest.get("http://localhost:3000/favicon.ico", (req, res, ctx) => {
     // this request was mocked to fix a stupid console warning
     return res();

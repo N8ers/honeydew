@@ -77,3 +77,8 @@ export const createListItem =
     await axios.post(`${baseUrl}/listItem`, data);
     dispatch(getListById(listId));
   };
+
+export const updateListItem = (data) => async (dispatch) => {
+  await axios.put(`${baseUrl}/listItem/${data.id}`, data);
+  dispatch(getListById(data.listId));
+};
