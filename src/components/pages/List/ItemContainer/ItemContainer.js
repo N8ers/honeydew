@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { updateListItem } from "../../../../store/actions";
+import { updateListItem, deleteListItem } from "../../../../store/actions";
 
 function ItemContainer(props) {
   const [title, setTitle] = useState("");
@@ -21,8 +21,8 @@ function ItemContainer(props) {
     dispatch(updateListItem({ listId: props.listId, id: props.id, completed }));
   };
 
-  const deleteItem = (id) => {
-    console.log("deleteItem ", id);
+  const deleteItem = () => {
+    dispatch(deleteListItem({ listId: props.listId, id: props.id }));
   };
 
   return (
@@ -38,11 +38,7 @@ function ItemContainer(props) {
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
-      <IconButton
-        edge="end"
-        aria-label="delete"
-        onClick={() => deleteItem(props.id)}
-      >
+      <IconButton edge="end" aria-label="delete" onClick={() => deleteItem()}>
         <DeleteIcon />
       </IconButton>
     </ListItem>

@@ -107,6 +107,19 @@ export const handlers = [
     return res(ctx.status(200));
   }),
 
+  rest.delete(`${baseUrl}/listItem/:id`, (req, res, ctx) => {
+    tasks.forEach((taskList) => {
+      if (taskList.id === req.body.listId) {
+        for (let i = 0; i < taskList.tasks.length; i++) {
+          if (taskList.tasks[i].id === parseInt(req.params.id)) {
+            taskList.tasks.splice(i, 1);
+          }
+        }
+      }
+    });
+    return res(ctx.status(200));
+  }),
+
   rest.get("http://localhost:3000/favicon.ico", (req, res, ctx) => {
     // this request was mocked to fix a stupid console warning
     return res();

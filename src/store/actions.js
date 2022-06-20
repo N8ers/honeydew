@@ -82,3 +82,8 @@ export const updateListItem = (data) => async (dispatch) => {
   await axios.put(`${baseUrl}/listItem/${data.id}`, data);
   dispatch(getListById(data.listId));
 };
+
+export const deleteListItem = (data) => async (dispatch) => {
+  await axios.delete(`${baseUrl}/listItem/${data.id}`, { data });
+  dispatch(getListById(data.listId));
+};
