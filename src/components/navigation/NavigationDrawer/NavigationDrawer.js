@@ -1,11 +1,11 @@
-import * as React from "react";
-import { Drawer, Divider } from "@mui/material";
+import * as React from "react"
+import { Drawer, Divider } from "@mui/material"
 
-import DrawerItem from "../DrawerItem/DrawerItem";
+import DrawerItem from "../DrawerItem/DrawerItem"
 
-import styles from "./NavigationDrawer.module.css";
+import styles from "./NavigationDrawer.module.css"
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 export default function PermanentDrawerLeft() {
   return (
@@ -45,5 +45,5 @@ export default function PermanentDrawerLeft() {
         <DrawerItem to="/auth" title="logout" />
       </div>
     </Drawer>
-  );
+  )
 }

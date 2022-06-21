@@ -1,15 +1,18 @@
-import { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import { useState } from "react"
+import TextField from "@mui/material/TextField"
+import Button from "@mui/material/Button"
+import PropTypes from "prop-types"
 
 function NewListItem(props) {
-  const [newListItem, setNewListItem] = useState("");
+  const { addListItem } = props
+
+  const [newListItem, setNewListItem] = useState("")
 
   const addNewListItem = (event) => {
-    event.preventDefault();
-    props.addListItem(newListItem);
-    setNewListItem("");
-  };
+    event.preventDefault()
+    addListItem(newListItem)
+    setNewListItem("")
+  }
 
   return (
     <form onSubmit={addNewListItem}>
@@ -33,7 +36,11 @@ function NewListItem(props) {
         Add
       </Button>
     </form>
-  );
+  )
 }
 
-export default NewListItem;
+NewListItem.propTypes = {
+  addListItem: PropTypes.func,
+}
+
+export default NewListItem

@@ -1,7 +1,7 @@
-import { Outlet } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Outlet } from "react-router-dom"
+import { Box } from "@mui/material"
 
-import NavigationDrawer from "../components/navigation/NavigationDrawer/NavigationDrawer";
+import NavigationDrawer from "../components/navigation/NavigationDrawer/NavigationDrawer"
 
 function Main() {
   return (
@@ -16,7 +16,7 @@ function Main() {
         </Box>
       </Box>
     </div>
-  );
+  )
 }
 
-export default Main;
+export default Main

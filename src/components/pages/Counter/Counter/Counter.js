@@ -1,21 +1,21 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux"
+import { useState, useEffect } from "react"
 
-import { increment, decrement, set } from "../../../../store/actions";
+import { increment, decrement, set } from "../../../../store/actions"
 
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper"
+import Button from "@mui/material/Button"
+import TextField from "@mui/material/TextField"
 
-import styles from "./Counter.module.css";
+import styles from "./Counter.module.css"
 
 function Counter() {
-  const countFromStore = useSelector((state) => state.counter.count);
-  const dispatch = useDispatch();
-  const [count, setCount] = useState(countFromStore);
+  const countFromStore = useSelector((state) => state.counter.count)
+  const dispatch = useDispatch()
+  const [count, setCount] = useState(countFromStore)
   useEffect(() => {
-    setCount(countFromStore);
-  }, [countFromStore]);
+    setCount(countFromStore)
+  }, [countFromStore])
 
   return (
     <Paper elevation={3} className={styles.container}>
@@ -34,7 +34,7 @@ function Counter() {
         <Button onClick={() => dispatch(set(count))}>Set</Button>
       </div>
     </Paper>
-  );
+  )
 }
 
-export default Counter;
+export default Counter

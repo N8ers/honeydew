@@ -1,33 +1,41 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"
+import PropTypes from "prop-types"
 import {
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-} from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
+} from "@mui/material"
+import InboxIcon from "@mui/icons-material/MoveToInbox"
 
 function NavigationItem(props) {
+  const { to, title } = props
+
   return (
     <NavLink
-      exact={props.to}
-      to={props.to}
+      exact={to}
+      to={to}
       style={({ isActive }) => ({
         color: isActive ? "teal" : "white",
         textDecoration: "none",
       })}
     >
-      <ListItem key={props.to} disablePadding>
+      <ListItem key={to} disablePadding>
         <ListItemButton>
           <ListItemIcon style={{ color: "#1ea5a3" }}>
             {/* <ListItemIcon style={{ color: "white" }}> */}
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary={props.title} />
+          <ListItemText primary={title} />
         </ListItemButton>
       </ListItem>
     </NavLink>
-  );
+  )
 }
 
-export default NavigationItem;
+NavigationItem.propTypes = {
+  to: PropTypes.string,
+  title: PropTypes.string,
+}
+
+export default NavigationItem

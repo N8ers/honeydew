@@ -1,7 +1,7 @@
-import { rest } from "msw";
+import { rest } from "msw"
 
-let nextListId = 4;
-let nextTaskId = 13;
+let nextListId = 4
+let nextTaskId = 13
 
 const tasks = [
   {
@@ -37,19 +37,19 @@ const tasks = [
     ],
     invitedFriends: [],
   },
-];
+]
 
-const baseUrl = "http://localhost:3050";
+const baseUrl = "http://localhost:3050"
 
 export const handlers = [
   rest.get(`${baseUrl}/lists`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(tasks));
+    return res(ctx.status(200), ctx.json(tasks))
   }),
   rest.get(`${baseUrl}/lists/:id`, (req, res, ctx) => {
     const [task] = tasks.filter((task) => {
-      return task.id === parseInt(req.params.id);
-    });
-    return res(ctx.status(200), ctx.json(task));
+      return task.id === parseInt(req.params.id)
+    })
+    return res(ctx.status(200), ctx.json(task))
   }),
 
   rest.post(`${baseUrl}/lists`, (req, res, ctx) => {
@@ -58,10 +58,10 @@ export const handlers = [
       title: "",
       tasks: [],
       invitedFriends: [],
-    };
-    tasks.push(newTask);
-    nextListId++;
-    return res(ctx.status(200), ctx.json({ id: newTask.id }));
+    }
+    tasks.push(newTask)
+    nextListId++
+    return res(ctx.status(200), ctx.json({ id: newTask.id }))
   }),
 
   rest.post(`${baseUrl}/listItem`, (req, res, ctx) => {
@@ -69,26 +69,26 @@ export const handlers = [
       id: nextTaskId,
       title: req.body.title,
       completed: false,
-    };
+    }
 
     tasks.forEach((task) => {
       if (task.id === req.body.listId) {
-        task.tasks.push(newListItem);
+        task.tasks.push(newListItem)
       }
-    });
+    })
 
-    nextTaskId++;
-    return res(ctx.status(200));
+    nextTaskId++
+    return res(ctx.status(200))
   }),
 
   rest.put(`${baseUrl}/lists`, (req, res, ctx) => {
     tasks.forEach((task) => {
       if (task.id === req.body.id) {
-        task.title = req.body.title;
+        task.title = req.body.title
       }
-    });
+    })
 
-    return res(ctx.status(200));
+    return res(ctx.status(200))
   }),
 
   rest.put(`${baseUrl}/listItem/:id`, (req, res, ctx) => {
@@ -96,15 +96,15 @@ export const handlers = [
       taskList.tasks.forEach((task) => {
         if (task.id === parseInt(req.params.id)) {
           if (req.body.hasOwnProperty("title")) {
-            task.title = req.body.title;
+            task.title = req.body.title
           } else if (req.body.hasOwnProperty("completed")) {
-            task.completed = req.body.completed;
+            task.completed = req.body.completed
           }
         }
-      });
-    });
+      })
+    })
 
-    return res(ctx.status(200));
+    return res(ctx.status(200))
   }),
 
   rest.delete(`${baseUrl}/listItem/:id`, (req, res, ctx) => {
@@ -112,16 +112,16 @@ export const handlers = [
       if (taskList.id === req.body.listId) {
         for (let i = 0; i < taskList.tasks.length; i++) {
           if (taskList.tasks[i].id === parseInt(req.params.id)) {
-            taskList.tasks.splice(i, 1);
+            taskList.tasks.splice(i, 1)
           }
         }
       }
-    });
-    return res(ctx.status(200));
+    })
+    return res(ctx.status(200))
   }),
 
-  rest.get("http://localhost:3000/favicon.ico", (req, res, ctx) => {
+  rest.get("http://localhost:3000/favicon.ico", (req, res) => {
     // this request was mocked to fix a stupid console warning
-    return res();
+    return res()
   }),
-];
+]

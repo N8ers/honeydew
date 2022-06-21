@@ -1,32 +1,32 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Card, IconButton } from "@mui/material";
-import { Add } from "@mui/icons-material";
-import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { Card, IconButton } from "@mui/material"
+import { Add } from "@mui/icons-material"
+import { useSelector, useDispatch } from "react-redux"
 
-import { getLists, createList } from "../../../../store/actions";
+import { getLists, createList } from "../../../../store/actions"
 
-import styles from "./ListsContainer.module.css";
+import styles from "./ListsContainer.module.css"
 
 function ListsContainer() {
-  const listsFromStore = useSelector((state) => state.lists);
-  const [lists, setLists] = useState(listsFromStore);
+  const listsFromStore = useSelector((state) => state.lists)
+  const [lists, setLists] = useState(listsFromStore)
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(getLists());
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    setLists(listsFromStore);
-  }, [listsFromStore]);
+    dispatch(getLists())
+  }, [])
+
+  useEffect(() => {
+    setLists(listsFromStore)
+  }, [listsFromStore])
 
   const handleCratingList = async () => {
-    const { id } = await dispatch(createList());
-    navigate(`/lists/${id}`);
-  };
+    const { id } = await dispatch(createList())
+    navigate(`/lists/${id}`)
+  }
 
   return (
     <div>
@@ -46,7 +46,7 @@ function ListsContainer() {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default ListsContainer;
+export default ListsContainer

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { Box, Button, Card } from "@mui/material";
+import { Link } from "react-router-dom"
+import { Box, Button, Card } from "@mui/material"
 
 function PageNotFound() {
   return (
@@ -12,7 +12,7 @@ function PageNotFound() {
         </Link>
       </Card>
     </Box>
-  );
+  )
 }
 
-export default PageNotFound;
+export default PageNotFound

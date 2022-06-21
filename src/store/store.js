@@ -1,9 +1,9 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux"
+import thunk from "redux-thunk"
 
-import { countReducer } from "./countReducer";
-import { listReducer } from "./listReducer";
-import { selectedListReducer } from "./selectedListReducer";
+import { countReducer } from "./countReducer"
+import { listReducer } from "./listReducer"
+import { selectedListReducer } from "./selectedListReducer"
 
 export const initialState = {
   // user: {
@@ -22,7 +22,7 @@ export const initialState = {
   counter: {
     count: 11,
   },
-};
+}
 
 // multi reducer concept
 // const initialState = {
@@ -48,11 +48,11 @@ const reducer = combineReducers({
   counter: countReducer,
   lists: listReducer,
   selectedList: selectedListReducer,
-});
+})
 
-const middleware = applyMiddleware(thunk);
+const middleware = applyMiddleware(thunk)
 
 const enhancer =
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
-export const store = createStore(reducer, compose(middleware, enhancer));
+export const store = createStore(reducer, compose(middleware, enhancer))
