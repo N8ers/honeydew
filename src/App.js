@@ -6,6 +6,8 @@ import Counter from "./components/pages/Counter/Counter/Counter"
 import ListsContainer from "./components/pages/Lists/ListsContainer/ListsContainer"
 import FriendsContainer from "./components/pages/Friends/FriendsContainer/FriendsContainer"
 
+import LoadingSpinner from "./components/utils/LoadingSpinner"
+
 import Main from "./layouts/Main"
 import Auth from "./layouts/Auth"
 import PageNotFound from "./layouts/PageNotFound"
@@ -13,6 +15,7 @@ import PageNotFound from "./layouts/PageNotFound"
 function App() {
   return (
     <BrowserRouter>
+      <LoadingSpinner />
       <Routes>
         <Route path="/" element={<Main />}>
           <Route path="/lists" element={<ListsContainer />} />
