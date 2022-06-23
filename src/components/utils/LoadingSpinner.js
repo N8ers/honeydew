@@ -1,14 +1,14 @@
 import { Backdrop, CircularProgress } from "@mui/material"
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 
 function LoadingSpinner() {
   const [loading, setLoading] = useState(true)
+  const loadingFromState = useSelector((state) => state.loading)
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 2000)
-  }, [])
+    setLoading(loadingFromState)
+  }, [loadingFromState])
 
   return (
     <Backdrop

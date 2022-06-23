@@ -43,13 +43,13 @@ const baseUrl = "http://localhost:3050"
 
 export const handlers = [
   rest.get(`${baseUrl}/lists`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(tasks))
+    return res(ctx.delay(500), ctx.status(200), ctx.json(tasks))
   }),
   rest.get(`${baseUrl}/lists/:id`, (req, res, ctx) => {
     const [task] = tasks.filter((task) => {
       return task.id === parseInt(req.params.id)
     })
-    return res(ctx.status(200), ctx.json(task))
+    return res(ctx.delay(500), ctx.status(200), ctx.json(task))
   }),
 
   rest.post(`${baseUrl}/lists`, (req, res, ctx) => {

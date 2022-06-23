@@ -4,6 +4,7 @@ import thunk from "redux-thunk"
 import { countReducer } from "./countReducer"
 import { listReducer } from "./listReducer"
 import { selectedListReducer } from "./selectedListReducer"
+import { loadingReducer } from "./loadingReducer"
 
 export const initialState = {
   // user: {
@@ -14,6 +15,7 @@ export const initialState = {
   //   { id: 1, username: "Goon" },
   //   { id: 2, username: "Tsuki" },
   // ],
+  loading: true,
   selectedList: {
     title: "",
     tasks: [],
@@ -48,6 +50,7 @@ const reducer = combineReducers({
   counter: countReducer,
   lists: listReducer,
   selectedList: selectedListReducer,
+  loading: loadingReducer,
 })
 
 const middleware = applyMiddleware(thunk)

@@ -13,10 +13,17 @@ export const CREATE_LIST = "CREATE_LIST"
 
 export const CREATE_LIST_ITEM = "CREATE_LIST_ITEM"
 
+export const SET_LOADING = "SET_LOADING"
+
 // ACTION CREATORS
 export const increment = () => ({ type: INCREMENT })
 export const decrement = () => ({ type: DECREMENT })
 export const set = (value) => ({ type: SET, payload: value })
+
+export const setLoading = (value) => ({
+  type: SET_LOADING,
+  payload: value,
+})
 
 export const setListItems = (value) => ({
   type: SET_LIST_ITEMS,
@@ -47,13 +54,17 @@ const baseUrl = "http://localhost:3050"
 
 // THUNK ACTION CREATORS
 export const getLists = () => async (dispatch) => {
+  await dispatch(setLoading(true))
   const response = await axios.get(`${baseUrl}/lists`)
-  dispatch(setListItems(response.data))
+  await dispatch(setListItems(response.data))
+  await dispatch(setLoading(false))
 }
 
 export const getListById = (id) => async (dispatch) => {
+  await dispatch(setLoading(true))
   const response = await axios.get(`${baseUrl}/lists/${id}`)
   dispatch(setListById(response.data))
+  await dispatch(setLoading(false))
 }
 
 export const updateListTitle = (id, title) => async (dispatch) => {
@@ -70,13 +81,11 @@ export const createList = () => async () => {
   return response.data
 }
 
-export const createListItem =
-  ({ listId, title }) =>
-    async (dispatch) => {
-      const data = { listId, title }
-      await axios.post(`${baseUrl}/listItem`, data)
-      dispatch(getListById(listId))
-    }
+export const createListItem = (data) => async (dispatch) => {
+  const { listId } = data
+  await axios.post(`${baseUrl}/listItem`, data)
+  dispatch(getListById(listId))
+}
 
 export const updateListItem = (data) => async (dispatch) => {
   await axios.put(`${baseUrl}/listItem/${data.id}`, data)
