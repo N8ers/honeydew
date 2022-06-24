@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { Paper, Input } from "@mui/material"
 
@@ -17,14 +17,23 @@ import NewListItem from "../NewListItem/NewListItem"
 function ListContainer() {
   const params = useParams()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const listDataFromState = useSelector((state) => state.selectedList)
 
   const [title, setTitle] = useState([])
   const [listItems, setListItems] = useState([])
   const [id, setId] = useState(0)
 
+  const handleGetListById = async () => {
+    const result = await dispatch(getListById(params.id))
+
+    if (!result) {
+      navigate("/lists", { replace: true })
+    }
+  }
+
   useEffect(() => {
-    dispatch(getListById(params.id))
+    handleGetListById()
   }, [])
 
   useEffect(() => {

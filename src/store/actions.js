@@ -62,9 +62,16 @@ export const getLists = () => async (dispatch) => {
 
 export const getListById = (id) => async (dispatch) => {
   await dispatch(setLoading(true))
-  const response = await axios.get(`${baseUrl}/lists/${id}`)
-  dispatch(setListById(response.data))
+  let response
+  try {
+    response = await axios.get(`${baseUrl}/lists/${id}`)
+    dispatch(setListById(response.data))
+  } catch (error) {
+    console.log("error: ", error)
+  }
   await dispatch(setLoading(false))
+
+  return response
 }
 
 export const updateListTitle = (id, title) => async (dispatch) => {

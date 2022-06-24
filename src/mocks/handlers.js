@@ -49,7 +49,15 @@ export const handlers = [
     const [task] = tasks.filter((task) => {
       return task.id === parseInt(req.params.id)
     })
-    return res(ctx.delay(500), ctx.status(200), ctx.json(task))
+
+    if (task) {
+      return res(ctx.delay(500), ctx.status(200), ctx.json(task))
+    }
+    return res(
+      ctx.delay(500),
+      ctx.status(400),
+      ctx.json({ message: "no task found" })
+    )
   }),
 
   rest.post(`${baseUrl}/lists`, (req, res, ctx) => {
