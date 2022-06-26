@@ -3,6 +3,11 @@ import { rest } from "msw"
 let nextListId = 4
 let nextTaskId = 13
 
+const friends = [
+  { id: 1, username: "Goon" },
+  { id: 2, username: "Tsuki" },
+]
+
 const tasks = [
   {
     id: 1,
@@ -12,7 +17,7 @@ const tasks = [
       { id: 2, completed: false, title: "Eat socks" },
       { id: 3, completed: true, title: "Shake blocks" },
     ],
-    invitedFriends: [{ id: 1, username: "Goon" }],
+    invitedFriends: [friends[0]],
   },
   {
     id: 2,
@@ -24,7 +29,7 @@ const tasks = [
       { id: 7, completed: false, title: "Do taxes" },
       { id: 8, completed: true, title: "Bang Bang!" },
     ],
-    invitedFriends: [],
+    invitedFriends: [friends[1]],
   },
   {
     id: 3,
@@ -126,6 +131,10 @@ export const handlers = [
       }
     })
     return res(ctx.status(200))
+  }),
+
+  rest.get(`${baseUrl}/friends`, (req, res, ctx) => {
+    return res(ctx.delay(500), ctx.status(200), ctx.json(friends))
   }),
 
   rest.get("http://localhost:3000/favicon.ico", (req, res) => {

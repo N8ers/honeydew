@@ -5,17 +5,16 @@ import { countReducer } from "./countReducer"
 import { listReducer } from "./listReducer"
 import { selectedListReducer } from "./selectedListReducer"
 import { loadingReducer } from "./loadingReducer"
+import { friendReducer } from "./friendReducer"
 
 export const initialState = {
   // user: {
-  //   username: "N8ers",
-  //   email: "____",
+  //   loggedIn: false,
+  //   username: "",
+  //   email: "",
   // },
-  // friends: [
-  //   { id: 1, username: "Goon" },
-  //   { id: 2, username: "Tsuki" },
-  // ],
-  loading: true,
+  friends: [],
+  loading: false,
   selectedList: {
     title: "",
     tasks: [],
@@ -51,6 +50,7 @@ const reducer = combineReducers({
   lists: listReducer,
   selectedList: selectedListReducer,
   loading: loadingReducer,
+  friends: friendReducer,
 })
 
 const middleware = applyMiddleware(thunk)

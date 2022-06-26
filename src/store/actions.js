@@ -15,6 +15,8 @@ export const CREATE_LIST_ITEM = "CREATE_LIST_ITEM"
 
 export const SET_LOADING = "SET_LOADING"
 
+export const SET_FRIENDS = "SET_FRIENDS"
+
 // ACTION CREATORS
 export const increment = () => ({ type: INCREMENT })
 export const decrement = () => ({ type: DECREMENT })
@@ -49,6 +51,8 @@ export const setNewListItem = (value) => ({
   type: CREATE_LIST_ITEM,
   payload: value,
 })
+
+export const setFriends = (value) => ({ type: SET_FRIENDS, payload: value })
 
 const baseUrl = "http://localhost:3050"
 
@@ -102,4 +106,11 @@ export const updateListItem = (data) => async (dispatch) => {
 export const deleteListItem = (data) => async (dispatch) => {
   await axios.delete(`${baseUrl}/listItem/${data.id}`, { data })
   dispatch(getListById(data.listId))
+}
+
+export const getFriends = () => async (dispatch) => {
+  await dispatch(setLoading(true))
+  const result = await axios.get(`${baseUrl}/friends`)
+  dispatch(setFriends(result.data))
+  await dispatch(setLoading(false))
 }
