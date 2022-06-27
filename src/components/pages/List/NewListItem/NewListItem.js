@@ -28,7 +28,7 @@ function NewListItem(props) {
         type="submit"
         style={{
           backgroundColor: "#1ea5a3",
-          color: "#002f3c",
+          color: "white",
           fontWeight: "bold",
           marginLeft: "5px",
         }}
