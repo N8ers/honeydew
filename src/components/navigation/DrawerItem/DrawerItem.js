@@ -5,6 +5,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Typography,
 } from "@mui/material"
 import InboxIcon from "@mui/icons-material/MoveToInbox"
 
@@ -16,17 +17,23 @@ function NavigationItem(props) {
       exact={to}
       to={to}
       style={({ isActive }) => ({
-        color: isActive ? "teal" : "white",
+        color: isActive ? "#1ea5a3" : "white",
         textDecoration: "none",
+        fontWeight: "bold",
       })}
     >
       <ListItem key={to} disablePadding>
         <ListItemButton>
           <ListItemIcon style={{ color: "#1ea5a3" }}>
-            {/* <ListItemIcon style={{ color: "white" }}> */}
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary={title} />
+          <ListItemText
+            primary={
+              <Typography type="body2" style={{ fontWeight: "bold" }}>
+                {title}
+              </Typography>
+            }
+          />
         </ListItemButton>
       </ListItem>
     </NavLink>
