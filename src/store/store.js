@@ -18,6 +18,7 @@ export const initialState = {
   selectedList: {
     title: "",
     tasks: [],
+    invitedFriends: [],
   },
   lists: [],
   counter: {
