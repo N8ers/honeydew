@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["react", "jest"],
   rules: {
     "react/react-in-jsx-scope": "off",
     "react/no-unescaped-entities": 0,
@@ -27,5 +27,18 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
     semi: ["error", "never"],
+    "jest/no-identical-title": "error",
   },
+  overrides: [
+    {
+      files: ["*.test.js"],
+      plugins: ["jest"],
+      extends: ["plugin:jest/recommended"],
+      rules: {
+        // Nathan try to modify these
+        quotes: "off",
+        // semi: ["error", "never"],
+      },
+    },
+  ],
 }
