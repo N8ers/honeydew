@@ -1,7 +1,8 @@
 import * as React from "react"
-import { Drawer, Divider, Button } from "@mui/material"
+import { Drawer, Divider, Box } from "@mui/material"
 import { Link } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
+import Logout from "@mui/icons-material/Logout"
 
 import DrawerItem from "../DrawerItem/DrawerItem"
 
@@ -47,12 +48,30 @@ export default function PermanentDrawerLeft() {
 
         <Divider sx={{ bgcolor: "white" }} />
 
-        <Button
-          variant="contained"
+        <Box
+          sx={{
+            display: "flex",
+            ":hover": { backgroundColor: "red", cursor: "pointer" },
+          }}
           onClick={() => logout({ returnTo: window.location.origin })}
         >
-          Log out
-        </Button>
+          <Logout
+            style={{
+              marginLeft: 18,
+              marginTop: 8,
+            }}
+          />
+          <div
+            style={{
+              fontWeight: "bold",
+              marginLeft: "30px",
+              marginTop: "10px",
+              marginBottom: "10px",
+            }}
+          >
+            logout
+          </div>
+        </Box>
       </div>
     </Drawer>
   )
