@@ -5,6 +5,7 @@ import ListContainer from "./components/pages/List/ListContainer/ListContainer.j
 import Counter from "./components/pages/Counter/Counter/Counter"
 import ListsContainer from "./components/pages/Lists/ListsContainer/ListsContainer"
 import FriendsContainer from "./components/pages/Friends/FriendsContainer/FriendsContainer"
+import Profile from "./components/pages/Profile/Profile/Profile"
 
 import LoadingSpinner from "./components/utils/LoadingSpinner"
 
@@ -27,6 +28,7 @@ function App() {
           />
           <Route path="/friends" element={<FriendsContainer />} />
           <Route path="/counter" element={<Counter />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />}></Route>

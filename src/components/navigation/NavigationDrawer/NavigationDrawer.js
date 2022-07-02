@@ -35,6 +35,7 @@ export default function PermanentDrawerLeft() {
 
         <DrawerItem to="/lists" title="lists" />
         <DrawerItem to="/friends" title="friends" />
+        <DrawerItem to="/profile" title="profile" />
 
         <Divider sx={{ bgcolor: "white" }} />
 
