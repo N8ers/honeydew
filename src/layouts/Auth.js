@@ -3,13 +3,7 @@ import { Box, Button, Card } from "@mui/material"
 import { useAuth0 } from "@auth0/auth0-react"
 
 function Auth() {
-  const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
-    useAuth0()
-  // const { isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0()
-
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0()
 
   return (
     <Box>
