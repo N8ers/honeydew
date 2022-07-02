@@ -17,6 +17,8 @@ function App() {
     <BrowserRouter>
       <LoadingSpinner />
       <Routes>
+        <Route path="/" element={<Auth />}></Route>
+
         <Route path="/" element={<Main />}>
           <Route path="/lists" element={<ListsContainer />} />
           <Route
@@ -26,7 +28,6 @@ function App() {
           <Route path="/friends" element={<FriendsContainer />} />
           <Route path="/counter" element={<Counter />} />
         </Route>
-        <Route path="/auth" element={<Auth />}></Route>
 
         <Route path="*" element={<PageNotFound />}></Route>
       </Routes>

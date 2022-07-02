@@ -42,7 +42,7 @@ export default function PermanentDrawerLeft() {
 
         <Divider sx={{ bgcolor: "white" }} />
 
-        <DrawerItem to="/auth" title="logout" />
+        <DrawerItem to="/" title="logout" />
       </div>
     </Drawer>
   )
