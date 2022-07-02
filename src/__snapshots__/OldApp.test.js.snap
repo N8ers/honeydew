@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`display p tag 1`] = `
+<p
+  data-testid="pTag"
+>
+  He is just this big
+</p>
+`;
+
+exports[`renders custom prop 1`] = `
+<p
+  data-testid="propMessage"
+>
+  hi there!
+</p>
+`;
+
+exports[`renders default props 1`] = `
+<p
+  data-testid="propMessage"
+>
+  default message
+</p>
+`;

@@ -13,7 +13,9 @@ test("display p tag", () => {
 
   const pTag = screen.getByTestId("pTag")
   expect(pTag).toContainHTML('<p data-testid="pTag">He is just this big</p>')
-  expect(pTag).toContain("hi")
+  expect(screen.getByText("He is just this big")).toBeInTheDocument()
+
+  expect(pTag).toMatchSnapshot()
 })
 
 test("renders default props", () => {
@@ -23,6 +25,8 @@ test("renders default props", () => {
   expect(messageProp).toContainHTML(
     '<p data-testid="propMessage">default message</p>'
   )
+
+  expect(messageProp).toMatchSnapshot()
 })
 
 test("renders custom prop", () => {
@@ -32,14 +36,5 @@ test("renders custom prop", () => {
   expect(messageProp).toContainHTML(
     '<p data-testid="propMessage">hi there!</p>'
   )
+  expect(messageProp).toMatchSnapshot()
 })
-
-/*
-Next figure out how to 
-* make a wrapper 
-* do a `find()` 
-* snapshots 
-* fix the single-quote issues
-* test just the text, not the markup as well
- 
- */
