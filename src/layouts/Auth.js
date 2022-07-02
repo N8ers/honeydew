@@ -27,7 +27,7 @@ function Auth() {
             <br />
             <hr />
             <Link to={"/lists"}>
-              <Button>HACK - Go Home</Button>
+              <Button>Go to the app!</Button>
             </Link>
           </div>
         )}

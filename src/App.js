@@ -6,6 +6,7 @@ import ListsContainer from "./components/pages/Lists/ListsContainer/ListsContain
 import FriendsContainer from "./components/pages/Friends/FriendsContainer/FriendsContainer"
 import Profile from "./components/pages/Profile/Profile/Profile"
 
+import ProtectedRoute from "./components/utils/ProtectedRoute"
 import LoadingSpinner from "./components/utils/LoadingSpinner"
 
 import Main from "./layouts/Main"
@@ -16,17 +17,43 @@ function App() {
   return (
     <BrowserRouter>
       <LoadingSpinner />
+
       <Routes>
         <Route path="/" element={<Auth />}></Route>
 
         <Route path="/" element={<Main />}>
-          <Route path="/lists" element={<ListsContainer />} />
+          <Route
+            path="/lists"
+            element={
+              <ProtectedRoute>
+                <ListsContainer />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/lists/:id"
-            element={<ListContainer title="grocery list" />}
+            element={
+              <ProtectedRoute>
+                <ListContainer title="grocery list" />
+              </ProtectedRoute>
+            }
           />
-          <Route path="/friends" element={<FriendsContainer />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/friends"
+            element={
+              <ProtectedRoute>
+                <FriendsContainer />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
         <Route path="*" element={<PageNotFound />}></Route>
