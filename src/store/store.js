@@ -1,7 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 
-import { countReducer } from "./countReducer"
 import { listReducer } from "./listReducer"
 import { selectedListReducer } from "./selectedListReducer"
 import { loadingReducer } from "./loadingReducer"
@@ -21,9 +20,6 @@ export const initialState = {
     invitedFriends: [],
   },
   lists: [],
-  counter: {
-    count: 11,
-  },
 }
 
 // multi reducer concept
@@ -47,7 +43,6 @@ export const initialState = {
 // });
 
 const reducer = combineReducers({
-  counter: countReducer,
   lists: listReducer,
   selectedList: selectedListReducer,
   loading: loadingReducer,

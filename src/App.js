@@ -2,7 +2,6 @@ import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import ListContainer from "./components/pages/List/ListContainer/ListContainer.js"
-import Counter from "./components/pages/Counter/Counter/Counter"
 import ListsContainer from "./components/pages/Lists/ListsContainer/ListsContainer"
 import FriendsContainer from "./components/pages/Friends/FriendsContainer/FriendsContainer"
 import Profile from "./components/pages/Profile/Profile/Profile"
@@ -27,7 +26,6 @@ function App() {
             element={<ListContainer title="grocery list" />}
           />
           <Route path="/friends" element={<FriendsContainer />} />
-          <Route path="/counter" element={<Counter />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
 
