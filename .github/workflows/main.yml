@@ -11,7 +11,7 @@ jobs:
         run: npm ci
       - name: Run ESLint
         run: npm run lint
-      - name: Build
+      - name: Run Build
         run: npm run build
       - name: Run Jest
         run: npm run test
