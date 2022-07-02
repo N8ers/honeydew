@@ -3,7 +3,7 @@ import { Box, Button, Card } from "@mui/material"
 import { useAuth0 } from "@auth0/auth0-react"
 
 function Auth() {
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0()
+  const { isAuthenticated, loginWithRedirect } = useAuth0()
 
   return (
     <Box>
@@ -14,34 +14,24 @@ function Auth() {
         <h1>I'm Auth</h1>
         <p>Pretty much the landing page if you're not signed in, i guess.</p>
 
-        <Button variant="contained" onClick={() => loginWithRedirect()}>
+        <Button
+          variant="contained"
+          onClick={() => loginWithRedirect("http://localhost:3000/lists")}
+        >
           Sign in
         </Button>
 
-        <Button onClick={() => logout({ returnTo: window.location.origin })}>
-          Log out
-        </Button>
-
-        <br />
-        <br />
-        <hr />
-        <Link to={"/lists"}>
-          <Button>HACK - Go Home</Button>
-        </Link>
+        {isAuthenticated && (
+          <div>
+            <br />
+            <br />
+            <hr />
+            <Link to={"/lists"}>
+              <Button>HACK - Go Home</Button>
+            </Link>
+          </div>
+        )}
       </Card>
-
-      {isAuthenticated && (
-        <Card
-          variant="outlined"
-          sx={{ width: 500, margin: "50px auto", padding: "50px" }}
-        >
-          <div>isAuthenticated: {isAuthenticated.toString()}</div>
-          <img src={user.picture} alt={user.name} />
-          <h2>{user.name}</h2>
-          <h2>{user.nickname}</h2>
-          <p>{user.email}</p>
-        </Card>
-      )}
     </Box>
   )
 }
