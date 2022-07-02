@@ -27,7 +27,8 @@
     "test:watch": "react-scripts test --watch",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "validate": "eslint . && react-scripts test"
   },
   "eslintConfig": {
     "extends": [
