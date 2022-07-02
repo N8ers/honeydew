@@ -21,39 +21,21 @@ function App() {
       <Routes>
         <Route path="/" element={<Auth />}></Route>
 
-        <Route path="/" element={<Main />}>
-          <Route
-            path="/lists"
-            element={
-              <ProtectedRoute>
-                <ListsContainer />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Main />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="/lists" element={<ListsContainer />} />
           <Route
             path="/lists/:id"
-            element={
-              <ProtectedRoute>
-                <ListContainer title="grocery list" />
-              </ProtectedRoute>
-            }
+            element={<ListContainer title="grocery list" />}
           />
-          <Route
-            path="/friends"
-            element={
-              <ProtectedRoute>
-                <FriendsContainer />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/friends" element={<FriendsContainer />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />}></Route>
