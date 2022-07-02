@@ -15,17 +15,19 @@ function NewListItem(props) {
   }
 
   return (
-    <form onSubmit={addNewListItem}>
+    <form onSubmit={addNewListItem} data-testid="newListItemForm">
       <TextField
         id="outlined-basic"
         variant="outlined"
         size="small"
         value={newListItem}
+        data-testid="textField"
         onChange={(event) => setNewListItem(event.target.value)}
       />
       <Button
         variant="contained"
         type="submit"
+        data-testid="addButton"
         style={{
           backgroundColor: "#1ea5a3",
           color: "white",
