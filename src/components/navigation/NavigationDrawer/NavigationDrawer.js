@@ -66,7 +66,7 @@ export default function PermanentDrawerLeft() {
               fontWeight: "bold",
               marginLeft: "30px",
               marginTop: "10px",
-              marginBottom: "10px",
+              marginBottom: "12px",
             }}
           >
             logout
