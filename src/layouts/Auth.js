@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom"
-import { Box, Button, Card, TextField } from "@mui/material"
+import { Box, Button, Card } from "@mui/material"
+import { useAuth0 } from "@auth0/auth0-react"
 
 function Auth() {
-  const login = (event) => {
-    event.preventDefault()
-    alert("loggin in!")
-  }
+  const { isAuthenticated, loginWithRedirect } = useAuth0()
 
   return (
     <Box>
@@ -16,27 +14,23 @@ function Auth() {
         <h1>I'm Auth</h1>
         <p>Pretty much the landing page if you're not signed in, i guess.</p>
 
-        <form onSubmit={login}>
-          <div>
-            <TextField id="standard-basic" label="email" variant="standard" />
-          </div>
-          <div>
-            <TextField
-              id="standard-basic"
-              label="password"
-              variant="standard"
-            />
-          </div>
-          <Button type="submit" variant="contained">
-            Sign in
-          </Button>
-        </form>
+        <Button
+          variant="contained"
+          onClick={() => loginWithRedirect("http://localhost:3000/lists")}
+        >
+          Sign in
+        </Button>
 
-        <br />
-        <br />
-        <Link to={"/lists"}>
-          <Button>Go Home</Button>
-        </Link>
+        {isAuthenticated && (
+          <div>
+            <br />
+            <br />
+            <hr />
+            <Link to={"/lists"}>
+              <Button>Go to the app!</Button>
+            </Link>
+          </div>
+        )}
       </Card>
     </Box>
   )
