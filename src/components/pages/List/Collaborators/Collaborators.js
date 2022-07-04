@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { Button, Autocomplete, TextField } from "@mui/material"
+import { Button, Autocomplete, TextField, Backdrop, Card } from "@mui/material"
+import PropTypes from "prop-types"
 
 import { getFriends } from "../../../../store/actions"
 
-function Collaborators() {
+function Collaborators(props) {
+  const { invitedFriendsDataFromState } = props
   const dispatch = useDispatch()
-  const listDataFromState = useSelector((state) => state.selectedList)
+
   const friendDataFromState = useSelector((state) => state.friends)
 
   const [invitedFriends, setInvitedFriends] = useState([])
+  const [modal, setModal] = useState(false)
 
   const handleGetListById = async () => {
     await dispatch(getFriends())
@@ -18,14 +21,12 @@ function Collaborators() {
 
   useEffect(() => {
     handleGetListById()
+    setInvitedFriends(invitedFriendsDataFromState)
   }, [])
-
-  useEffect(() => {
-    setInvitedFriends(listDataFromState.invitedFriends)
-  }, [listDataFromState])
 
   const handleInvitedCollaboratorChange = (value) => {
     console.log("event ", value.target.value)
+    setModal(true)
   }
 
   return (
@@ -56,6 +57,13 @@ function Collaborators() {
         )}
       />
 
+      <Backdrop open={modal}>
+        <Card variant="outlined" sx={{ width: 500, margin: "0 auto" }}>
+          <h1>hi</h1>
+          <Button onClick={() => setModal(false)}>close</Button>
+        </Card>
+      </Backdrop>
+
       <hr />
 
       <Link to={"/friends"}>
@@ -63,6 +71,14 @@ function Collaborators() {
       </Link>
     </div>
   )
+}
+
+Collaborators.propTypes = {
+  invitedFriendsDataFromState: PropTypes.array,
+}
+
+Collaborators.defaultProps = {
+  invitedFriendsDataFromState: [],
 }
 
 export default Collaborators

@@ -69,7 +69,9 @@ function ListContainer() {
 
       <hr />
 
-      <Collaborators />
+      <Collaborators
+        invitedFriendsDataFromState={listDataFromState.invitedFriends}
+      />
     </Paper>
   )
 }
