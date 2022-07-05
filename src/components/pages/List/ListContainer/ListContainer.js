@@ -71,6 +71,7 @@ function ListContainer() {
 
       <Collaborators
         invitedFriendsDataFromState={listDataFromState.invitedFriends}
+        listId={listDataFromState.id}
       />
     </Paper>
   )

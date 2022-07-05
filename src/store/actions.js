@@ -103,6 +103,14 @@ export const updateListItem = (data) => async (dispatch) => {
   dispatch(getListById(data.listId))
 }
 
+export const updateInvitedFriends = (data) => async (dispatch) => {
+  await axios.put(
+    `${baseUrl}/listItem/${data.listId}/collaborators`,
+    data.selectedCollaborators
+  )
+  dispatch(getListById(data.listId))
+}
+
 export const deleteListItem = (data) => async (dispatch) => {
   await axios.delete(`${baseUrl}/listItem/${data.id}`, { data })
   dispatch(getListById(data.listId))

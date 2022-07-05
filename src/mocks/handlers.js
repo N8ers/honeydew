@@ -120,6 +120,15 @@ export const handlers = [
     return res(ctx.status(200))
   }),
 
+  rest.put(`${baseUrl}/listItem/:id/collaborators`, (req, res, ctx) => {
+    tasks.forEach((task) => {
+      if (task.id === parseInt(req.params.id)) {
+        task.invitedFriends = req.body
+      }
+    })
+    return res(ctx.status(200))
+  }),
+
   rest.delete(`${baseUrl}/listItem/:id`, (req, res, ctx) => {
     tasks.forEach((taskList) => {
       if (taskList.id === req.body.listId) {
