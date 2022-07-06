@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
-import { Card, Button } from "@mui/material"
+import { Card, Button, IconButton, Tooltip } from "@mui/material"
+import { RemoveCircleOutlineSharp } from "@mui/icons-material"
 
 function FriendCard(props) {
   const { username } = props
@@ -13,7 +14,12 @@ function FriendCard(props) {
           list name 1 | <Button>Revoke access</Button>
         </li>
         <li>
-          list name 2 | <Button>Revoke access</Button>
+          list name 2 |
+          <Tooltip title="revoke access">
+            <IconButton color="primary" aria-label="Revoke Access">
+              <RemoveCircleOutlineSharp />
+            </IconButton>
+          </Tooltip>
         </li>
       </ul>
 
