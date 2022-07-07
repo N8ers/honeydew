@@ -4,8 +4,12 @@ let nextListId = 4
 let nextTaskId = 13
 
 const friends = [
-  { id: 1, username: "Goon" },
-  { id: 2, username: "Tsuki" },
+  { id: 1, username: "Goon", listAccess: [{ id: 1, title: "Grocery List" }] },
+  {
+    id: 2,
+    username: "Tsuki",
+    listAccess: [{ id: 2, title: "Tricks to teach Tsuki" }],
+  },
 ]
 
 const tasks = [

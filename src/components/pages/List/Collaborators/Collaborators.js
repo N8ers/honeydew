@@ -59,12 +59,7 @@ function Collaborators(props) {
             onChange={(_, newValue) => setSelectedCollaborators(newValue)}
             isOptionEqualToValue={(option, value) => option.id === value.id}
             renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                label="Multiple values"
-                placeholder="Favorites"
-              />
+              <TextField {...params} variant="standard" label="Collaborators" />
             )}
           />
 
