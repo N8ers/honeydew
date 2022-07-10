@@ -6,8 +6,10 @@ function FriendCard(props) {
   const { username, listAccess } = props
 
   return (
-    <Card>
-      <h1>{username}</h1>
+    <Card sx={{ margin: 5, padding: 2 }}>
+      <div>{username}</div>
+
+      <hr />
 
       <div>invited to collaborate on:</div>
       <ul>
