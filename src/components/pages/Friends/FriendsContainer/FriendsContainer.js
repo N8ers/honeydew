@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Button, TextField } from "@mui/material"
+import { Button } from "@mui/material"
 
 import FriendCard from "../FriendCard/FriendCard"
+import InviteFriendModal from "../InviteFriendModal/InviteFriendModal"
+
 import { getFriends } from "../../../../store/actions"
 
 function FriendsContainer() {
   const [friends, setFriends] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
 
   const friendDataFromState = useSelector((state) => state.friends)
 
@@ -24,17 +27,18 @@ function FriendsContainer() {
     <div>
       <h1>Friends</h1>
 
-      <form>
-        <TextField
-          id="standard-basic"
-          label="Find A Friend"
-          variant="standard"
-        />
-        <Button>+</Button>
-      </form>
+      <InviteFriendModal isOpen={isOpen} closeModal={() => setIsOpen(false)} />
+
+      <Button onClick={() => setIsOpen(true)}>
+        Invite someone to collaborate!
+      </Button>
 
       {friends.map((friend) => (
-        <FriendCard key={friend.id} username={friend.username} />
+        <FriendCard
+          key={friend.id}
+          username={friend.username}
+          listAccess={friend.listAccess}
+        />
       ))}
     </div>
   )
