@@ -1,8 +1,6 @@
 import { initializeApp } from "firebase/app"
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-import { getFirestore } from "firebase/firestore/lite"
+import { getFirestore } from "firebase/firestore"
+import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -16,4 +14,15 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 
-const db = getFirestore(app)
+export const db = getFirestore(app)
+export const auth = getAuth(app)
+
+export const authStatus = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user !== null) {
+      console.log("logged in! ", user)
+    } else {
+      console.log("no user")
+    }
+  })
+}
