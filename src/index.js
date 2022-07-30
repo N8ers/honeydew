@@ -8,7 +8,7 @@ import App from "./App"
 
 import { store } from "./store/store"
 
-const useMockServiceWorker = true
+const useMockServiceWorker = false
 if (useMockServiceWorker) {
   const { worker } = require("./mocks/browser")
   worker.start()
