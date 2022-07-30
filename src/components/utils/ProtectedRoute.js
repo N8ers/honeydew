@@ -1,12 +1,23 @@
+import { useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
-import { useAuth0 } from "@auth0/auth0-react"
 import PropTypes from "prop-types"
+import { useEffect, useState } from "react"
 
 function ProtectedRoute({ children }) {
-  const { isAuthenticated, isLoading } = useAuth0()
+  const loadingFromState = useSelector((state) => state.loading)
+  const userFromState = useSelector((state) => state.user)
 
-  if (!isLoading) {
-    if (!isAuthenticated) {
+  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(true)
+
+  useEffect(() => {
+    setLoading(loadingFromState)
+    setUser(userFromState)
+  }, [loadingFromState, userFromState])
+
+  if (!loading) {
+    console.log(loading, user)
+    if (!user?.email || !user?.uid) {
       return <Navigate to="/" />
     }
     return children

@@ -1,23 +1,27 @@
 import { Card, Box } from "@mui/material"
-import { useAuth0 } from "@auth0/auth0-react"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 
 function Profile() {
-  const { user } = useAuth0()
+  const userFromState = useSelector((state) => state.user)
+
+  const [user, setUser] = useState(true)
+
+  useEffect(() => {
+    setUser(userFromState)
+  }, [userFromState])
 
   return (
     <Box>
-      {user && (
-        <Card
-          variant="outlined"
-          sx={{ width: 500, margin: "50px auto", padding: "50px" }}
-        >
-          <img src={user.picture} alt={user.name} />
-          <h2>{user.name}</h2>
-          <h2>{user.nickname}</h2>
-          <p>{user.email}</p>
-          <p>{user.sub}</p>
-        </Card>
-      )}
+      <Card
+        variant="outlined"
+        sx={{ width: 500, margin: "50px auto", padding: "50px" }}
+      >
+        <h1>i will be user data</h1>
+        <div>{user.email}</div>
+        <div>{user.emailVerified}</div>
+        <div>{user.uid}</div>
+      </Card>
     </Box>
   )
 }

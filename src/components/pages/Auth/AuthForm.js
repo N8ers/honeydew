@@ -18,10 +18,10 @@ function AuthForm() {
   const submitAuthForm = (event) => {
     event.preventDefault()
 
-    if (setShowCreateAccount) {
-      login()
-    } else {
+    if (showCreateAccount) {
       signup()
+    } else {
+      login()
     }
   }
 

@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { store } from "./store/store"
+
+import { setLoading, setUser } from "./store/actions"
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -17,12 +20,16 @@ const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 export const auth = getAuth(app)
 
-export const authStatus = () => {
+export const authStatus = async () => {
+  store.dispatch(setLoading(true))
+
   onAuthStateChanged(auth, (user) => {
     if (user !== null) {
-      console.log("logged in! ", user)
+      store.dispatch(setUser(user))
     } else {
-      console.log("no user")
+      store.dispatch(setUser({}))
     }
+
+    store.dispatch(setLoading(false))
   })
 }

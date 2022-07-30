@@ -9,6 +9,8 @@ export const SET_LIST_ITEMS = "SET_LIST_ITEMS"
 export const GET_LIST_BY_ID = "GET_LIST_BY_ID"
 export const SET_LIST_TITLE = "SET_LIST_TITLE"
 
+export const SET_USER = "SET_USER"
+
 export const CREATE_LIST = "CREATE_LIST"
 
 export const CREATE_LIST_ITEM = "CREATE_LIST_ITEM"
@@ -24,6 +26,11 @@ export const set = (value) => ({ type: SET, payload: value })
 
 export const setLoading = (value) => ({
   type: SET_LOADING,
+  payload: value,
+})
+
+export const setUser = (value) => ({
+  type: SET_USER,
   payload: value,
 })
 
