@@ -6,9 +6,31 @@ import { useSelector, useDispatch } from "react-redux"
 
 import { getLists, createList } from "../../../../store/actions"
 
+import { db } from "../../../../firebase-config"
+import { collection, getDocs } from "firebase/firestore"
+
 import styles from "./ListsContainer.module.css"
 
 function ListsContainer() {
+  /* DANGER ZONE */
+  const [firebaseData, setFirebaseData] = useState([])
+  const firebaseDataCollectionRef = collection(db, "lists")
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getDocs(firebaseDataCollectionRef)
+      const formattedData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }))
+      console.log({ formattedData })
+      setFirebaseData(formattedData)
+      console.log({ firebaseData })
+    }
+
+    getData()
+  }, [])
+  /* DANGER ZONE */
+
   const listsFromStore = useSelector((state) => state.lists)
   const [lists, setLists] = useState(listsFromStore)
 
