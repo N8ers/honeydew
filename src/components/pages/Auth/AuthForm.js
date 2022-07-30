@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import { Box, Button, Card, TextField } from "@mui/material"
+import { Box, Button, Card, TextField, FormControl } from "@mui/material"
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -11,12 +11,21 @@ import {
 function AuthForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [showCreateAccount, setShowCreateAccount] = useState(false)
 
   const auth = getAuth()
 
-  const login = (event) => {
+  const submitAuthForm = (event) => {
     event.preventDefault()
-    console.log("login fired: ", email, password)
+
+    if (setShowCreateAccount) {
+      login()
+    } else {
+      signup()
+    }
+  }
+
+  const login = () => {
     try {
       signInWithEmailAndPassword(auth, email, password)
     } catch (error) {
@@ -24,8 +33,7 @@ function AuthForm() {
     }
   }
 
-  const signup = async (event) => {
-    event.preventDefault()
+  const signup = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -39,7 +47,6 @@ function AuthForm() {
   }
 
   const logout = async () => {
-    console.log("LOG OUT!")
     try {
       signOut(auth)
     } catch (error) {
@@ -55,48 +62,48 @@ function AuthForm() {
       >
         <h1>I'm Auth</h1>
         <p>Pretty much the landing page if you're not signed in, i guess.</p>
-        <div>email: {email}</div>
-        <div>password: {password}</div>
 
-        <form onSubmit={login}>
-          <TextField
-            label="Email"
-            variant="standard"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <TextField
-            label="Password"
-            variant="standard"
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <Button variant="contained" type="submit">
-            Sign in
-          </Button>
+        <form onSubmit={submitAuthForm}>
+          <FormControl>
+            <TextField
+              sx={{ display: "block" }}
+              label="Email"
+              variant="standard"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <TextField
+              sx={{ display: "block" }}
+              label="Password"
+              variant="standard"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <Button variant="contained" type="submit">
+              {showCreateAccount ? "Create account" : "Login"}
+            </Button>
+          </FormControl>
         </form>
 
+        <br />
+
+        <div>
+          <Button
+            variant="outlined"
+            onClick={() =>
+              setShowCreateAccount((previousState) => !previousState)
+            }
+          >
+            {showCreateAccount
+              ? "Already have an account?"
+              : "Create an account"}
+          </Button>
+        </div>
+
+        <br />
         <hr />
-
-        <form onSubmit={signup}>
-          <TextField
-            label="Email"
-            variant="standard"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <TextField
-            label="Password"
-            variant="standard"
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <Button variant="contained" type="submit">
-            Create account
-          </Button>
-        </form>
+        <br />
 
         <div>
           <Button variant="contained" onClick={logout}>
@@ -104,13 +111,7 @@ function AuthForm() {
           </Button>
         </div>
 
-        <br />
-        <br />
-        <br />
-
         <div>
-          <br />
-          <br />
           <Link to={"/lists"}>
             <Button>Go to the app!</Button>
           </Link>
