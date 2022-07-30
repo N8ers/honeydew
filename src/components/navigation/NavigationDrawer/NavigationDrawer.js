@@ -1,8 +1,10 @@
 import * as React from "react"
 import { Drawer, Divider, Box } from "@mui/material"
 import { Link } from "react-router-dom"
-import { useAuth0 } from "@auth0/auth0-react"
 import Logout from "@mui/icons-material/Logout"
+import { useDispatch } from "react-redux"
+
+import { setUser } from "../../../store/actions"
 
 import DrawerItem from "../DrawerItem/DrawerItem"
 
@@ -11,7 +13,11 @@ import styles from "./NavigationDrawer.module.css"
 const drawerWidth = 240
 
 export default function PermanentDrawerLeft() {
-  const { logout } = useAuth0()
+  const dispatch = useDispatch()
+
+  const logout = () => {
+    dispatch(setUser({}))
+  }
 
   return (
     <Drawer

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import ListContainer from "./components/pages/List/ListContainer/ListContainer.js"
@@ -13,7 +13,13 @@ import Main from "./layouts/Main"
 import Auth from "./layouts/Auth"
 import PageNotFound from "./layouts/PageNotFound"
 
+import { authStatus } from "./firebase-config"
+
 function App() {
+  useEffect(() => {
+    authStatus()
+  }, [])
+
   return (
     <BrowserRouter>
       <LoadingSpinner />
