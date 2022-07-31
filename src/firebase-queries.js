@@ -1,8 +1,9 @@
 import { collection, getDocs } from "firebase/firestore"
+import { onAuthStateChanged } from "firebase/auth"
 
 import { store } from "./store/store"
-import { db } from "./firebase-config"
-import { setListItems } from "./store/actions"
+import { db, auth } from "./firebase-config"
+import { setListItems, setLoading, setUser } from "./store/actions"
 
 export const getListData = async () => {
   try {
@@ -18,4 +19,18 @@ export const getListData = async () => {
   } finally {
     console.log("finally")
   }
+}
+
+export const authStatus = async () => {
+  store.dispatch(setLoading(true))
+
+  onAuthStateChanged(auth, (user) => {
+    if (user !== null) {
+      store.dispatch(setUser(user))
+    } else {
+      store.dispatch(setUser({}))
+    }
+
+    store.dispatch(setLoading(false))
+  })
 }
