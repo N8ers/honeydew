@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { Card, IconButton } from "@mui/material"
+import { useNavigate } from "react-router-dom"
+import { IconButton } from "@mui/material"
 import { Add } from "@mui/icons-material"
 import { useSelector, useDispatch } from "react-redux"
+
+import ListPreview from "../ListPreview/ListPreview"
 
 import { createList } from "../../../../store/actions"
 
@@ -40,11 +42,13 @@ function ListsContainer() {
 
       <div className={styles.cardContainer}>
         {lists.map((list) => (
-          <Link key={list.id} to={`/lists/${list.id}`}>
-            <Card varient="outlined" className={styles.card}>
-              {list.title}
-            </Card>
-          </Link>
+          <ListPreview
+            key={list.id}
+            id={list.id}
+            title={list.title}
+            tasks={list.tasks}
+            invitedFriends={list.invitedFriends}
+          />
         ))}
       </div>
     </div>
