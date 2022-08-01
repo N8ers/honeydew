@@ -13,7 +13,7 @@ import Main from "./layouts/Main"
 import Auth from "./layouts/Auth"
 import PageNotFound from "./layouts/PageNotFound"
 
-import { authStatus } from "./firebase-config"
+import { authStatus } from "./firebase-queries"
 
 function App() {
   useEffect(() => {

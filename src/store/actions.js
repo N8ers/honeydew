@@ -64,12 +64,16 @@ export const setFriends = (value) => ({ type: SET_FRIENDS, payload: value })
 const baseUrl = "http://localhost:3050"
 
 // THUNK ACTION CREATORS
-export const getLists = () => async (dispatch) => {
-  await dispatch(setLoading(true))
-  const response = await axios.get(`${baseUrl}/lists`)
-  await dispatch(setListItems(response.data))
-  await dispatch(setLoading(false))
-}
+// export const getLists = () => async (dispatch) => {
+//   await dispatch(setLoading(true))
+//   try {
+//     const response = await axios.get(`${baseUrl}/lists`)
+//     await dispatch(setListItems(response.data))
+//   } catch (error) {
+//     console.log("ERROR ", error)
+//   }
+//   await dispatch(setLoading(false))
+// }
 
 export const getListById = (id) => async (dispatch) => {
   await dispatch(setLoading(true))
@@ -125,7 +129,11 @@ export const deleteListItem = (data) => async (dispatch) => {
 
 export const getFriends = () => async (dispatch) => {
   await dispatch(setLoading(true))
-  const result = await axios.get(`${baseUrl}/friends`)
-  dispatch(setFriends(result.data))
+  try {
+    const result = await axios.get(`${baseUrl}/friends`)
+    dispatch(setFriends(result.data))
+  } catch (error) {
+    console.log("ERROR ", error)
+  }
   await dispatch(setLoading(false))
 }

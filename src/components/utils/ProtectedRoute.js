@@ -16,7 +16,6 @@ function ProtectedRoute({ children }) {
   }, [loadingFromState, userFromState])
 
   if (!loading) {
-    console.log(loading, user)
     if (!user?.email || !user?.uid) {
       return <Navigate to="/" />
     }
